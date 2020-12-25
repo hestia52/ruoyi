@@ -1,9 +1,9 @@
-package ${packageName}.mapper;
+package ${packageName}import java.util.List;
 
-import java.util.List;
-import ${packageName}.domain.${ClassName};
-#if($table.sub)
-import ${packageName}.domain.${subClassName};
+        .mapper;
+${packageName}
+        .domain.${ClassName};
+#if($table.sub) ${packageName}.domain.${subClassName};
 #end
 
 /**

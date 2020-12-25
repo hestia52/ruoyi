@@ -1,13 +1,14 @@
 package com.ruoyi.common.utils;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
+import com.ruoyi.common.json.JSON;
 import org.apache.shiro.SecurityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.ruoyi.common.json.JSON;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.util.Map;
 
 /**
  * 处理并记录日志文件

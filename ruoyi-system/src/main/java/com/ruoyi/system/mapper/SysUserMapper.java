@@ -1,7 +1,8 @@
 package com.ruoyi.system.mapper;
 
-import java.util.List;
 import com.ruoyi.common.core.domain.entity.SysUser;
+
+import java.util.List;
 
 /**
  * 用户表 数据层

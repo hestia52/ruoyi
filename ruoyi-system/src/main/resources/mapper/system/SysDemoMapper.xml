@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysDemoMapper">
+
+<resultMap type="SysDemo" id="SysDemoResult">
+        <result property="dmId"    column="dm_id"    />
+        <result property="dmName"    column="dm_name"    />
+        <result property="delFlag"    column="del_flag"    />
+        <result property="createBy"    column="create_by"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectSysDemoVo">
+        select dm_id, dm_name, del_flag, create_by, create_time, update_by, update_time from sys_demo
+    </sql>
+
+    <select id="selectSysDemoList" parameterType="SysDemo" resultMap="SysDemoResult">
+        <include refid="selectSysDemoVo"/>
+        <where>  
+            <if test="dmName != null  and dmName != ''"> and dm_name like concat('%', #{dmName}, '%')</if>
+        </where>
+    </select>
+    
+    <select id="selectSysDemoById" parameterType="Long" resultMap="SysDemoResult">
+        <include refid="selectSysDemoVo"/>
+        where dm_id = #{dmId}
+    </select>
+        
+    <insert id="insertSysDemo" parameterType="SysDemo" useGeneratedKeys="true" keyProperty="dmId">
+        insert into sys_demo
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="dmName != null">dm_name,</if>
+            <if test="delFlag != null">del_flag,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="dmName != null">#{dmName},</if>
+            <if test="delFlag != null">#{delFlag},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysDemo" parameterType="SysDemo">
+        update sys_demo
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="dmName != null">dm_name = #{dmName},</if>
+            <if test="delFlag != null">del_flag = #{delFlag},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where dm_id = #{dmId}
+    </update>
+
+    <delete id="deleteSysDemoById" parameterType="Long">
+        delete from sys_demo where dm_id = #{dmId}
+    </delete>
+
+    <delete id="deleteSysDemoByIds" parameterType="String">
+        delete from sys_demo where dm_id in 
+        <foreach item="dmId" collection="array" open="(" separator="," close=")">
+            #{dmId}
+        </foreach>
+    </delete>
+
+</mapper>

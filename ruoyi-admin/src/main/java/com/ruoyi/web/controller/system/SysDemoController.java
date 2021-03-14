@@ -10,6 +10,7 @@ import com.ruoyi.system.domain.SysDemo;
 import com.ruoyi.system.service.ISysDemoService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,9 @@ public class SysDemoController extends BaseController
 
     @Autowired
     private ISysDemoService sysDemoService;
+
+    @Autowired
+    public StringRedisTemplate stringRedisTemplate;
 
     @RequiresPermissions("system:demo:view")
     @GetMapping()
@@ -83,6 +87,9 @@ public class SysDemoController extends BaseController
     @ResponseBody
     public AjaxResult addSave(SysDemo sysDemo)
     {
+        //测试redis连接是否正常
+        //stringRedisTemplate.opsForValue().set("xixi", "Enhiles");
+        System.out.println(stringRedisTemplate.opsForValue().get("xixi"));
         return toAjax(sysDemoService.insertSysDemo(sysDemo));
     }
 

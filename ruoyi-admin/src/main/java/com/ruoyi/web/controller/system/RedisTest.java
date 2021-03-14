@@ -1,7 +1,6 @@
 package com.ruoyi.web.controller.system;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,8 +19,5 @@ public class RedisTest {
         System.out.println(stringRedisTemplate.opsForValue().get("userName"));
         return "";
     }
-    public static void main(String [] args){
-       RedisTest r = new RedisTest();
-       r.getIndex();
-    }
+
 }
